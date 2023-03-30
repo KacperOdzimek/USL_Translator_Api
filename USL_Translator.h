@@ -16,8 +16,7 @@ namespace USL_Translator
 	struct TranslationResult
 	{
 		bool success = false;
-		void* data_position = nullptr;
-		int data_size = 0;
+		std::vector<uint8_t> data;
 		std::vector<std::string> prompt{};
 	};
 
