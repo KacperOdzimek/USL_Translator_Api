@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <map>
+
 namespace USL_Translator
 {
 	struct Data
@@ -49,7 +51,8 @@ namespace USL_Translator
 		//User have to provide pointer to translator. This version of load will be used in non - standalone compiler, build in for example an game
 		static bool Load(TranslatorBase* T);
 		static void Terminate();
-		static TranslationResult Translate(char const src_type[], char const target_type[], Data Data);
+		static TranslationResult Translate
+		(char const src_type[], char const target_type[], Data InData);
 	};
 	
 }

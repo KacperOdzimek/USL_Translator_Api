@@ -39,7 +39,8 @@ bool compare_strings(char const* f, char const* s)
 	return f[i] == s[i];
 }
 
-USL_Translator::TranslationResult USL_Translator::USL_Translator::Translate(char const src_type[], char const target_type[], Data InData)
+USL_Translator::TranslationResult USL_Translator::USL_Translator::Translate
+(char const src_type[], char const target_type[], Data InData)
 {
 	TranslationResult result;
 
