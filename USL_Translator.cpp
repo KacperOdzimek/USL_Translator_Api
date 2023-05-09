@@ -40,7 +40,7 @@ bool compare_strings(char const* f, char const* s)
 }
 
 USL_Translator::TranslationResult USL_Translator::USL_Translator::Translate
-(char const src_type[], char const target_type[], Data InData)
+(char const src_type[], char const target_type[], Data InData, LoadExternalFileCallback LEFC)
 {
 	TranslationResult result;
 
@@ -48,7 +48,7 @@ USL_Translator::TranslationResult USL_Translator::USL_Translator::Translate
 	{
 		if (compare_strings(T->src_type(), src_type) && compare_strings(T->target_type(), target_type))
 		{
-			result = T->Translate(InData);
+			result = T->Translate(InData, LEFC);
 			break;
 		}
 	}

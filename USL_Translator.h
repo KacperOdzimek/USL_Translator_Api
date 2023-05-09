@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <vector>
 #include <string>
+#include <functional>
 
 #include <map>
 
@@ -21,6 +22,18 @@ namespace USL_Translator
 		std::vector<uint8_t> data;
 		std::vector<std::string> prompt{};
 	};
+	
+	/*
+		Function that handle loading libraries and other external files
+		Called by sigantures like "using library ?n"
+		Have to return content of requested file compiled to USL_BINARY
+		If file doesn't exsists, return Data object with nullptr pointer and size = 0
+
+		First argument is type of requested file:
+			0 - library
+		Second argument is file name
+	*/
+	using LoadExternalFileCallback = std::function<Data(int, std::string)>;
 
 	/*
 		by inheriting from this class, we create new translators
@@ -28,7 +41,7 @@ namespace USL_Translator
 	class TranslatorBase
 	{
 	public:
-		virtual TranslationResult Translate(Data InData) = 0;
+		virtual TranslationResult Translate(Data InData, LoadExternalFileCallback LEFC) = 0;
 		virtual const char* src_type() = 0;
 		virtual const char* target_type() = 0;
 	private:
@@ -52,7 +65,7 @@ namespace USL_Translator
 		static bool Load(TranslatorBase* T);
 		static void Terminate();
 		static TranslationResult Translate
-		(char const src_type[], char const target_type[], Data InData);
+		(char const src_type[], char const target_type[], Data InData, LoadExternalFileCallback LLC);
 	};
 	
 }
