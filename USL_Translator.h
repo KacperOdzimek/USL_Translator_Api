@@ -21,6 +21,17 @@ namespace USL_Translator
 		bool success = false;
 		std::vector<uint8_t> data;
 		std::vector<std::string> prompt{};
+		struct HeaderEntry
+		{
+			enum class Type
+			{
+				Value, Array, Object
+			};
+			Type type;
+			std::vector<std::string> content;
+			HeaderEntry(Type _type, std::vector<std::string> _content) : type(_type), content(_content) {};
+		};
+		std::map<std::string, HeaderEntry> data_for_header;
 	};
 	
 	/*
